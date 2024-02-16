@@ -2,6 +2,6 @@ module.exports = function (api) {
   api.cache(true);
   return {
     presets: ['babel-preset-expo'],
-    plugins: ['@ts-gql/babel-plugin']
+    plugins: ['@ts-gql/babel-plugin'],
   };
 };

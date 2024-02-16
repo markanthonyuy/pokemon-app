@@ -1,11 +1,20 @@
-import { gql } from "@ts-gql/tag";
+import { gql } from '@ts-gql/tag';
 
 export const GET_GENERATION_QUERY = gql`
-  query GetGeneration($name: String!, $limit: Int! = 39, $offset: Int! = 0, $order: order_by) {
-    pokemon_v2_generation(where: {name: {_eq: $name}}) {
+  query GetGeneration(
+    $name: String!
+    $limit: Int! = 39
+    $offset: Int! = 0
+    $order: order_by
+  ) {
+    pokemon_v2_generation(where: { name: { _eq: $name } }) {
       id
       name
-      pokemon_v2_pokemonspecies(order_by: {order: $order}, limit: $limit, offset: $offset) {
+      pokemon_v2_pokemonspecies(
+        order_by: { order: $order }
+        limit: $limit
+        offset: $offset
+      ) {
         id
         name
         order
@@ -24,4 +33,4 @@ export const GET_GENERATION_QUERY = gql`
       }
     }
   }
-`as import("../../__generated__/ts-gql/GetGeneration").type 
+` as import('../../__generated__/ts-gql/GetGeneration').type;

@@ -7,9 +7,5 @@ const client = new ApolloClient({
 });
 
 export const ApolloClientProvider = ({ children }: PropsWithChildren<{}>) => {
-  return (
-    <ApolloProvider client={client}>
-      {children}
-    </ApolloProvider>
-  );
-}
+  return <ApolloProvider client={client}>{children}</ApolloProvider>;
+};

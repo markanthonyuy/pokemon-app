@@ -20,18 +20,21 @@ export default function TabLayout() {
 
   return (
     <Tabs
-      initialRouteName='list'
+      initialRouteName="list"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         // Disable the static render of the header on web
         // to prevent a hydration error in React Navigation v6.
         headerShown: useClientOnlyValue(false, true),
-      }}>
+      }}
+    >
       <Tabs.Screen
         name="list"
         options={{
           title: 'List',
-          tabBarIcon: ({ color }) => <TabBarIcon name="list-ul" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="list-ul" color={color} />
+          ),
           headerRight: () => (
             <Link href="/(modals)/about" asChild>
               <Pressable>
@@ -52,7 +55,9 @@ export default function TabLayout() {
         name="types"
         options={{
           title: 'Types',
-          tabBarIcon: ({ color }) => <TabBarIcon name="th-large" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="th-large" color={color} />
+          ),
         }}
       />
     </Tabs>

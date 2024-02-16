@@ -10,6 +10,7 @@
     "test": "jest --watchAll",
     "download-schema": "get-graphql-schema https://beta.pokeapi.co/graphql/v1beta > schema.graphql",
     "lint": "eslint . --ext ts,tsx,js",
+    "format": "prettier --write .",
     "postinstall": "ts-gql build",
     "ts-gql:build": "ts-gql build",
     "ts-gql:watch": "ts-gql watch"
