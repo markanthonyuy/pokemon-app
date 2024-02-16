@@ -5,7 +5,7 @@ import { Container } from '@/components/common/Container';
 import { Loader } from '@/components/common/Loader';
 
 export default function TypesScreen() {
-  const { data, loading } = useGetPokemonTypes({ generation: 1 })
+  const { data, loading } = useGetPokemonTypes({ generation: 1 });
   return (
     <Container>
       {loading && (
@@ -19,17 +19,20 @@ export default function TypesScreen() {
         renderItem={(type) => {
           return (
             <TouchableOpacity style={styles.box}>
-              <Text style={styles.text}>{type?.item?.pokemon_v2_type?.name.toUpperCase()}</Text>
+              <Text style={styles.text}>
+                {type?.item?.pokemon_v2_type?.name.toUpperCase()}
+              </Text>
             </TouchableOpacity>
-          )
-        }} />
+          );
+        }}
+      />
     </Container>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    gap: 2
+    gap: 2,
   },
   box: {
     padding: 20,
@@ -37,5 +40,5 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-  }
+  },
 });

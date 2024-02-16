@@ -1,4 +1,3 @@
-
 ### Pokemon app
 
 I just want to play with new tools that's why I made this
@@ -23,4 +22,5 @@ I just want to play with new tools that's why I made this
 - `ts-gql` for type safe gql documents
 
 ### Demo
+
 ![Demo](https://raw.githubusercontent.com/markanthonyuy/pokemon-app/main/assets/demo.gif)

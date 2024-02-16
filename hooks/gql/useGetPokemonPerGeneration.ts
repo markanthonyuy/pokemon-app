@@ -10,7 +10,7 @@ type UseGetPokemonPerGenerationProps = {
   order?: OrderBy;
 };
 
-export const PAGE_OFFSET = 18;
+export const PAGE_OFFSET = 15;
 
 export const useGetPokemonPerGeneration = ({
   name,
@@ -36,7 +36,8 @@ export const useGetPokemonPerGeneration = ({
       ?.aggregate?.count || 0;
 
   const [offset, setOffset] = useState(0);
-  const [pokemons, setPokemons] = useState<PokemonFragmentData>(initialQueryData);
+  const [pokemons, setPokemons] =
+    useState<PokemonFragmentData>(initialQueryData);
 
   const allPokemons = pokemons.length ? [...pokemons] : [...initialQueryData];
 

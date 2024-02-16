@@ -3,7 +3,7 @@ import { gql } from '@ts-gql/tag';
 export const GET_GENERATION_QUERY = gql`
   query GetGeneration(
     $name: String!
-    $limit: Int! 
+    $limit: Int!
     $offset: Int! = 0
     $order: order_by
   ) {
@@ -15,7 +15,7 @@ export const GET_GENERATION_QUERY = gql`
         limit: $limit
         offset: $offset
       ) {
-       ...pokemon_species_Fragment
+        ...pokemon_species_Fragment
       }
       pokemon_v2_pokemonspecies_aggregate {
         aggregate {

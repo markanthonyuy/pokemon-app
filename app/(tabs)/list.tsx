@@ -7,13 +7,19 @@ import {
 } from '@/hooks/gql/useGetPokemonPerGeneration';
 import { Container } from '@/components/common/Container';
 import { Loader } from '@/components/common/Loader';
+import { Link } from 'expo-router';
 export default function ListScreen() {
   const { pokemons, loading, loadMore, offset, totalCount, networkStatus } =
     useGetPokemonPerGeneration({ name: 'generation-i' });
 
+  // Easier to read logic
+  const initialDataLoading = loading && networkStatus === 7;
+  const loadMoreLoading = loading && networkStatus === 3;
+  const showLoadMoreButton = pokemons.length + PAGE_OFFSET < totalCount;
+
   return (
     <Container>
-      {loading && networkStatus === 7 && (
+      {initialDataLoading && (
         <Container>
           <Loader />
         </Container>
@@ -22,26 +28,39 @@ export default function ListScreen() {
         data={pokemons}
         contentContainerStyle={styles.listContainer}
         numColumns={3}
+        keyExtractor={(pokemon) => pokemon.id.toString()}
         renderItem={(pokemon) => {
           return (
-            <TouchableOpacity onPress={() => null} style={styles.rowContainer}>
-              <Image
-                source={{
-                  uri: pokemon.item.pokemon_v2_pokemons[0]
-                    .pokemon_v2_pokemonsprites[0].sprites,
-                }}
-                style={styles.image}
-              />
-              <Text style={styles.name}>{pokemon.item.name.toUpperCase()}</Text>
-            </TouchableOpacity>
+            <Link
+              push
+              href={{
+                pathname: '/(list-details)/pokemon',
+                params: { id: pokemon.item.id },
+              }}
+              asChild
+              style={styles.rowContainer}
+            >
+              <TouchableOpacity>
+                <Image
+                  source={{
+                    uri: pokemon.item.pokemon_v2_pokemons[0]
+                      .pokemon_v2_pokemonsprites[0].sprites,
+                  }}
+                  style={styles.image}
+                />
+                <Text style={styles.name}>
+                  {pokemon.item.name.toUpperCase()}
+                </Text>
+              </TouchableOpacity>
+            </Link>
           );
         }}
         ListFooterComponent={() => {
           return (
-            pokemons.length + PAGE_OFFSET < totalCount && (
+            showLoadMoreButton && (
               <View style={styles.footer}>
-                {loading && networkStatus === 3 && <Loader />}
-                {!loading && networkStatus !== 3 && (
+                {loadMoreLoading && <Loader />}
+                {!loadMoreLoading && (
                   <TouchableOpacity
                     onPress={() => {
                       loadMore(offset + PAGE_OFFSET);
@@ -67,11 +86,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fafafa',
     flexGrow: 1,
     flexBasis: 0,
-    alignItems: 'flex-start',
+    gap: 8,
+    alignItems: 'center',
   },
   image: { width: 90, height: 90 },
   name: {
+    width: '100%',
     fontSize: 16,
+    textAlign: 'center',
   },
   footer: {
     padding: 10,
