@@ -1,15 +1,19 @@
 import { StyleSheet } from 'react-native';
 
-import { Text, View } from '@/components/Themed';
+import { Text } from '@/components/Themed';
 import { Link } from 'expo-router';
+import { Container } from '@/components/common/Container';
+import { Separator } from '@/components/common/Separator';
 export default function Index() {
   return (
-    <View style={styles.container}>
+    <Container style={styles.container}>
       <Text style={styles.title}>Welcome</Text>
       <Link href="/(tabs)/list" style={styles.link}>
-        <Text style={styles.linkText}>Enter</Text>
+        <Text style={styles.linkText}>Enter app</Text>
       </Link>
-    </View>
+      <Separator />
+      <Text>Prouldy made by Mark Uy</Text>
+    </Container>
   );
 }
 

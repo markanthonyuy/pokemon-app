@@ -1,32 +1,41 @@
-import { StyleSheet } from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-import { View } from '@/components/Themed';
+import { useGetPokemonTypes } from '@/hooks/gql/useGetPokemonTypes';
+import { Container } from '@/components/common/Container';
+import { Loader } from '@/components/common/Loader';
 
 export default function TypesScreen() {
+  const { data, loading } = useGetPokemonTypes({ generation: 1 })
   return (
-    <View style={styles.container}>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-    </View>
+    <Container>
+      {loading && (
+        <Container>
+          <Loader />
+        </Container>
+      )}
+      <FlatList
+        contentContainerStyle={styles.container}
+        data={data?.pokemon_v2_pokemontype}
+        renderItem={(type) => {
+          return (
+            <TouchableOpacity style={styles.box}>
+              <Text style={styles.text}>{type?.item?.pokemon_v2_type?.name.toUpperCase()}</Text>
+            </TouchableOpacity>
+          )
+        }} />
+    </Container>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    gap: 2
   },
-  title: {
+  box: {
+    padding: 20,
+    backgroundColor: 'lightblue',
+  },
+  text: {
     fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
+  }
 });
