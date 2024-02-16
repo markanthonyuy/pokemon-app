@@ -18,8 +18,6 @@ export const useGetPokemonTypes = ({
     }
   );
 
-  console.log(data)
-
   return {
     data, error, loading
   }

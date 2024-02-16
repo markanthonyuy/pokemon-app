@@ -39,9 +39,9 @@ export const useGetPokemonPerGeneration = ({
 
   const allPokemons = pokemons.length ? [...pokemons] : [...initialQueryData];
 
-  const loadMore = (offset: number) => {
+  const loadMore = async (offset: number) => {
     try {
-      fetchMore({
+      await fetchMore({
         variables: {
           offset: offset + PAGE_OFFSET,
         },
@@ -70,7 +70,8 @@ export const useGetPokemonPerGeneration = ({
       // Increase offset for next fetchMore
       setOffset(offset);
     } catch (error) {
-      console.log('error', error);
+      // Handle error soon
+      console.error('error', error);
     }
   };
 
