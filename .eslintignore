@@ -2,3 +2,4 @@
 node_modules
 
 components/__tests__/
+__generated__/
