@@ -11,7 +11,7 @@ module.exports = {
     '@ts-gql/ts-gql': 'error',
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
-    'no-console': ["error", { "allow": ["error"] }],
+    'no-console': ['error', { allow: ['error'] }],
   },
   extends: ['prettier'],
 };
