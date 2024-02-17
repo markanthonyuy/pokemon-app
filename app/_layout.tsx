@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { ApolloClientProvider } from '@/providers/ApolloClientProvider';
+import { GenerationProvider } from '@/providers/GenerationProvider';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -54,14 +55,17 @@ function RootLayoutNav() {
   return (
     <ApolloClientProvider>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="(modals)/about"
-            options={{ presentation: 'modal', title: 'About' }}
-          />
-        </Stack>
+        <GenerationProvider>
+          <Stack>
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="(list-details)" options={{ headerBackTitle: 'Back', headerTitle: 'Pokemon' }} />
+            <Stack.Screen
+              name="(modals)/about"
+              options={{ presentation: 'modal', title: 'About' }}
+            />
+          </Stack>
+        </GenerationProvider>
       </ThemeProvider>
     </ApolloClientProvider>
   );

@@ -4,15 +4,10 @@ export default function ListDetailsLayout() {
   return (
     <Stack
       screenOptions={{
-        headerBackTitle: 'Back',
-        headerShown: true,
-        title: 'test',
+        headerShown: false,
       }}
     >
-      <Stack.Screen
-        name="pokemon"
-        options={{ headerShown: false, title: 'test' }}
-      />
+      <Stack.Screen name="pokemon" />
     </Stack>
   );
 }

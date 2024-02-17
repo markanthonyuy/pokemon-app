@@ -1,12 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { Text, View } from '@/components/Themed';
+import { Link } from 'expo-router';
 
 export default function ModalScreen() {
   return (
     <View style={styles.container}>
       <Text>This is just for fun. :-)</Text>
+      <Text> More information here soon.</Text>
       <View
         style={styles.separator}
         lightColor="#eee"
@@ -14,6 +16,12 @@ export default function ModalScreen() {
       />
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
+
+      <Link asChild href="/" replace>
+        <TouchableOpacity>
+          <Text style={styles.back}>Select Generation</Text>
+        </TouchableOpacity>
+      </Link>
     </View>
   );
 }
@@ -33,4 +41,7 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
+  back: {
+    fontSize: 20
+  }
 });

@@ -1,10 +1,14 @@
 import { Image, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 
-import { Text } from '@/components/Themed';
+import { Text, View } from '@/components/Themed';
 import { Link } from 'expo-router';
 import { Container } from '@/components/common/Container';
 import { Separator } from '@/components/common/Separator';
+import RNPickerSelect from 'react-native-picker-select';
+import { useGeneration } from '@/providers/GenerationProvider';
+
 export default function Index() {
+  const { generation, setGeneration } = useGeneration();
   const handleGotoWebsite = () => {
     Linking.openURL('https://markanthonyuy.com');
   };
@@ -17,9 +21,45 @@ export default function Index() {
         style={styles.logo}
         resizeMode="contain"
       />
-      <Link href="/(tabs)/list">
+
+      <View style={styles.generationSelection}>
+        <RNPickerSelect
+          useNativeAndroidPickerStyle
+          fixAndroidTouchableBug
+          value={generation}
+          placeholder={{ label: 'Select a generation', value: '' }}
+          onValueChange={(value) => {
+            setGeneration(value)
+          }}
+          doneText="Select"
+          items={[
+            { label: 'Generation 1', value: 'generation-i' },
+            { label: 'Generation 2', value: 'generation-ii' },
+            { label: 'Generation 3', value: 'generation-iii' },
+            { label: 'Generation 4', value: 'generation-iv' },
+            { label: 'Generation 5', value: 'generation-v' },
+            { label: 'Generation 6', value: 'generation-vi' },
+            { label: 'Generation 7', value: 'generation-vii' },
+            { label: 'Generation 8', value: 'generation-viii' },
+            { label: 'Generation 9', value: 'generation-ix' },
+          ]}
+          style={{
+            placeholder: {
+              color: 'royalblue',
+            },
+            inputIOS: {
+              fontSize: 30,
+              fontWeight: 'bold',
+              color: 'royalblue',
+            }
+          }}
+        />
+      </View>
+
+      {generation && <Link href="/(tabs)/list">
         <Text style={styles.linkText}>Enter app</Text>
-      </Link>
+      </Link>}
+
       <Separator />
       <TouchableOpacity onPress={handleGotoWebsite}>
         <Text>
@@ -35,7 +75,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 20,
+    gap: 30,
   },
   logo: {
     width: 350,
@@ -43,6 +83,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  generationSelection: {
+    justifyContent: 'center',
   },
   footerLink: {
     color: '#2e78b7',

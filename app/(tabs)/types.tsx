@@ -2,18 +2,14 @@ import { FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import { useGetPokemonTypes } from '@/hooks/gql/useGetPokemonTypes';
 import { Container } from '@/components/common/Container';
-import { Loader } from '@/components/common/Loader';
+import { WholePageLoader } from '@/components/common/WholePageLoader';
 
 export default function TypesScreen() {
   const { data, loading } = useGetPokemonTypes({ generation: 1 });
   return (
     <Container>
-      {loading && (
-        <Container>
-          <Loader />
-        </Container>
-      )}
-      <FlatList
+      {loading && <WholePageLoader />}
+      {!loading && <FlatList
         contentContainerStyle={styles.container}
         data={data?.pokemon_v2_pokemontype}
         renderItem={(type) => {
@@ -25,7 +21,7 @@ export default function TypesScreen() {
             </TouchableOpacity>
           );
         }}
-      />
+      />}
     </Container>
   );
 }

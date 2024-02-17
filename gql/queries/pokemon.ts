@@ -25,3 +25,54 @@ export const GET_GENERATION_QUERY = gql`
     }
   }
 ` as import('../../__generated__/ts-gql/GetGeneration').type;
+
+export const GET_POKEMON_QUERY = gql`
+  query GetPokemon($id: Int) {
+    pokemon_v2_pokemonspecies(where: {id: {_eq: $id}}) {
+      name
+      forms_switchable
+      gender_rate
+      id
+      is_baby
+      is_legendary
+      is_mythical
+      order
+      pokemon_v2_pokemonshape {
+        id
+        name
+      }
+      pokemon_v2_pokemoncolor {
+        id
+        name
+      }
+      pokemon_v2_evolutionchain {
+        id
+      }
+      pokemon_v2_pokemonspeciesdescriptions {
+        id
+        description
+      }
+      pokemon_v2_pokemonspeciesnames {
+        id
+        name
+      }
+      pokemon_v2_pokemons {
+        id
+        height
+        weight
+        pokemon_v2_pokemonsprites {
+          id
+          sprites(path: "other.showdown")
+        }
+      }
+      pokemon_v2_pokemonhabitat {
+        id
+        name
+      }
+      pokemon_v2_growthrate {
+        id
+        formula
+      }
+    }
+  }
+`as import("../../__generated__/ts-gql/GetPokemon").type

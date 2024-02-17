@@ -8,9 +8,11 @@ import {
 import { Container } from '@/components/common/Container';
 import { Loader } from '@/components/common/Loader';
 import { Link } from 'expo-router';
+import { useGeneration } from '@/providers/GenerationProvider';
 export default function ListScreen() {
+  const { generation } = useGeneration()
   const { pokemons, loading, loadMore, offset, totalCount, networkStatus } =
-    useGetPokemonPerGeneration({ name: 'generation-i' });
+    useGetPokemonPerGeneration({ name: generation });
 
   // Easier to read logic
   const initialDataLoading = loading && networkStatus === 7;
