@@ -34,6 +34,7 @@ export const GET_POKEMON_BY_GENERATION_QUERY = gql`
   }
 ` as import('../../__generated__/ts-gql/GetPokemonByGeneration').type;
 
+// TODO: Split to fragments
 export const GET_POKEMON_QUERY = gql`
   query GetPokemon($id: Int) {
     pokemon_v2_pokemonspecies(where: { id: { _eq: $id } }) {
@@ -71,6 +72,29 @@ export const GET_POKEMON_QUERY = gql`
         pokemon_v2_pokemonsprites {
           id
           sprites(path: "other.showdown")
+        }
+        pokemon_v2_pokemonstats {
+          base_stat
+          effort
+          id
+          stat_id
+          pokemon_v2_stat {
+            id
+            name
+          }
+        }
+        pokemon_v2_pokemontypes {
+          id
+          pokemon_v2_type {
+            id
+            name
+            pokemon_v2_moves {
+              id
+              name
+              accuracy
+              move_effect_chance
+            }
+          }
         }
       }
       pokemon_v2_pokemonhabitat {

@@ -1,6 +1,3 @@
-
-
-
 ### Pokemon app
 
 I just want to play with new tools that's why I made this
@@ -34,4 +31,5 @@ GraphQL endpoint provided by [https://pokeapi.co/](https://pokeapi.co/)
 ![Demo](https://raw.githubusercontent.com/markanthonyuy/pokemon-app/main/assets/new-demo.gif)
 
 ### Author
+
 Made with ❤️ by [Mark Uy](https://markanthonyuy.com/)
