@@ -42,6 +42,6 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   back: {
-    fontSize: 20
-  }
+    fontSize: 20,
+  },
 });

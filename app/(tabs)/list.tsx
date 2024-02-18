@@ -10,7 +10,7 @@ import { Loader } from '@/components/common/Loader';
 import { Link } from 'expo-router';
 import { useGenerationContext } from '@/providers/GenerationProvider';
 export default function ListScreen() {
-  const { generation } = useGenerationContext()
+  const { generation } = useGenerationContext();
   const { pokemons, loading, loadMore, offset, totalCount, networkStatus } =
     useGetPokemonByGeneration({ name: generation });
 
@@ -65,7 +65,7 @@ export default function ListScreen() {
                 {!loadMoreLoading && (
                   <TouchableOpacity
                     onPress={() => {
-                      if (loading) return
+                      if (loading) return;
                       loadMore(offset + PAGE_OFFSET);
                     }}
                     style={styles.footerButton}

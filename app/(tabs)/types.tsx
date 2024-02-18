@@ -9,19 +9,21 @@ export default function TypesScreen() {
   return (
     <Container>
       {loading && <WholePageLoader />}
-      {!loading && <FlatList
-        contentContainerStyle={styles.container}
-        data={data?.pokemon_v2_pokemontype}
-        renderItem={(type) => {
-          return (
-            <TouchableOpacity style={styles.box}>
-              <Text style={styles.text}>
-                {type?.item?.pokemon_v2_type?.name.toUpperCase()}
-              </Text>
-            </TouchableOpacity>
-          );
-        }}
-      />}
+      {!loading && (
+        <FlatList
+          contentContainerStyle={styles.container}
+          data={data?.pokemon_v2_pokemontype}
+          renderItem={(type) => {
+            return (
+              <TouchableOpacity style={styles.box}>
+                <Text style={styles.text}>
+                  {type?.item?.pokemon_v2_type?.name.toUpperCase()}
+                </Text>
+              </TouchableOpacity>
+            );
+          }}
+        />
+      )}
     </Container>
   );
 }

@@ -59,7 +59,10 @@ function RootLayoutNav() {
           <Stack>
             <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="(list-details)" options={{ headerBackTitle: 'Back', headerTitle: 'Pokemon' }} />
+            <Stack.Screen
+              name="(list-details)"
+              options={{ headerBackTitle: 'Back', headerTitle: 'Pokemon' }}
+            />
             <Stack.Screen
               name="(modals)/about"
               options={{ presentation: 'modal', title: 'About' }}

@@ -1,7 +1,13 @@
-import { Image, StyleSheet, TouchableOpacity, Linking, Alert } from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Linking,
+  Alert,
+} from 'react-native';
 
 import { Text, View } from '@/components/Themed';
-import { Link, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { Container } from '@/components/common/Container';
 import { Separator } from '@/components/common/Separator';
 import RNPickerSelect from 'react-native-picker-select';
@@ -10,7 +16,7 @@ import { useGetGeneration } from '@/hooks/gql/useGetGeneration';
 import { useCallback, useMemo } from 'react';
 
 export default function Index() {
-  const { generations } = useGetGeneration()
+  const { generations } = useGetGeneration();
   const { generation, setGeneration } = useGenerationContext();
   const router = useRouter();
   const handleGotoWebsite = () => {
@@ -18,23 +24,34 @@ export default function Index() {
   };
 
   const allGenerations = useMemo(() => {
-    return generations?.map((generation) => ({ label: `Generation ${generation.id}`, value: generation.name })) || []
-  }, [generations])
+    return (
+      generations?.map((generation) => ({
+        label: `Generation ${generation.id}`,
+        value: generation.name,
+      })) || []
+    );
+  }, [generations]);
 
-  const handleCloseGenerationPicker = useCallback((donePress: boolean) => {
-    const messageTitle = 'Unable to Proceed'
-    const messagePart1 = 'Please select a generation. '
-    const messagePart2 = 'Press "Select" to continue.'
-    if (donePress) {
-      if (generation) {
-        router.push('/(tabs)/list')
-        return
+  const handleCloseGenerationPicker = useCallback(
+    (donePress: boolean) => {
+      const messageTitle = 'Unable to Proceed';
+      const messagePart1 = 'Please select a generation. ';
+      const messagePart2 = 'Press "Select" to continue.';
+      if (donePress) {
+        if (generation) {
+          router.push('/(tabs)/list');
+          return;
+        }
+        Alert.alert(messageTitle, messagePart2);
+        return;
       }
-      Alert.alert(messageTitle, messagePart2)
-      return
-    }
-    Alert.alert(messageTitle, `${!generation ? messagePart1 : ''}${messagePart2}`)
-  }, [generation])
+      Alert.alert(
+        messageTitle,
+        `${!generation ? messagePart1 : ''}${messagePart2}`
+      );
+    },
+    [generation]
+  );
 
   return (
     <Container style={styles.container}>
@@ -52,7 +69,7 @@ export default function Index() {
           value={generation}
           placeholder={{ label: 'Select a generation', value: '' }}
           onValueChange={(value) => {
-            setGeneration(value)
+            setGeneration(value);
           }}
           // Documentation says otherwise, I think creator forgot to add type for the prop. So adding ts-ignore for now
           // From the documentation "Callback triggered right before the closing of the picker. It has one boolean parameter indicating if the done button was pressed or not"
@@ -68,7 +85,7 @@ export default function Index() {
               fontSize: 30,
               fontWeight: 'bold',
               color: 'royalblue',
-            }
+            },
           }}
         />
       </View>

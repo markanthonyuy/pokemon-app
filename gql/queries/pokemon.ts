@@ -6,8 +6,7 @@ export const GET_GENERATION_QUERY = gql`
       ...generation_Fragment
     }
   }
-` as import("../../__generated__/ts-gql/GetGeneration").type;
-
+` as import('../../__generated__/ts-gql/GetGeneration').type;
 
 export const GET_POKEMON_BY_GENERATION_QUERY = gql`
   query GetPokemonByGeneration(
@@ -33,11 +32,11 @@ export const GET_POKEMON_BY_GENERATION_QUERY = gql`
       }
     }
   }
-` as import("../../__generated__/ts-gql/GetPokemonByGeneration").type;
+` as import('../../__generated__/ts-gql/GetPokemonByGeneration').type;
 
 export const GET_POKEMON_QUERY = gql`
   query GetPokemon($id: Int) {
-    pokemon_v2_pokemonspecies(where: {id: {_eq: $id}}) {
+    pokemon_v2_pokemonspecies(where: { id: { _eq: $id } }) {
       name
       forms_switchable
       gender_rate
@@ -84,4 +83,4 @@ export const GET_POKEMON_QUERY = gql`
       }
     }
   }
-`as import("../../__generated__/ts-gql/GetPokemon").type
+` as import('../../__generated__/ts-gql/GetPokemon').type;

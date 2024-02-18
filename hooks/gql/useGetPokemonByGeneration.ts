@@ -3,7 +3,8 @@ import { PokemonFragmentData } from '@/gql/fragments/pokemon';
 import { GET_POKEMON_BY_GENERATION_QUERY } from '@/gql/queries/pokemon';
 import { useQuery } from '@apollo/client';
 import { useState } from 'react';
-type OrderBy = TSGQLDocuments['GetPokemonByGeneration']['___type']['variables']['order'];
+type OrderBy =
+  TSGQLDocuments['GetPokemonByGeneration']['___type']['variables']['order'];
 
 type UseGetPokemonByGenerationProps = {
   name: string;
@@ -16,9 +17,8 @@ export const useGetPokemonByGeneration = ({
   name,
   order = 'asc',
 }: UseGetPokemonByGenerationProps) => {
-  const { data, error, loading, fetchMore, networkStatus, refetch, client } = useQuery(
-    GET_POKEMON_BY_GENERATION_QUERY,
-    {
+  const { data, error, loading, fetchMore, networkStatus, refetch, client } =
+    useQuery(GET_POKEMON_BY_GENERATION_QUERY, {
       variables: {
         name,
         order,
@@ -26,8 +26,7 @@ export const useGetPokemonByGeneration = ({
       },
       skip: !name,
       notifyOnNetworkStatusChange: true,
-    }
-  );
+    });
 
   const initialQueryData =
     data?.pokemon_v2_generation[0]?.pokemon_v2_pokemonspecies || [];
@@ -86,6 +85,6 @@ export const useGetPokemonByGeneration = ({
     networkStatus,
     offset,
     totalCount,
-    client
+    client,
   };
 };

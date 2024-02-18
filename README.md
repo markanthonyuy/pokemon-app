@@ -1,4 +1,3 @@
-
 ### Pokemon app
 
 I just want to play with new tools that's why I made this
@@ -15,7 +14,7 @@ I just want to play with new tools that's why I made this
 2. run `pnpm i`
 3. run `pnpm start`
 
-### API 
+### API
 
 GraphQL endpoint provided by [https://pokeapi.co/](https://pokeapi.co/)
 
@@ -30,5 +29,3 @@ GraphQL endpoint provided by [https://pokeapi.co/](https://pokeapi.co/)
 ### Demo
 
 ![Demo](https://raw.githubusercontent.com/markanthonyuy/pokemon-app/main/assets/demo.gif)
-
-

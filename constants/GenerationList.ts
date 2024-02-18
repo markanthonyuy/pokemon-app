@@ -8,4 +8,4 @@ export const GENERATION_LIST = [
   { label: 'Generation 7', value: 'generation-vii' },
   { label: 'Generation 8', value: 'generation-viii' },
   { label: 'Generation 9', value: 'generation-ix' },
-]
+];

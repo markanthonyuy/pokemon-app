@@ -1,5 +1,5 @@
-import { GET_GENERATION_QUERY } from "@/gql/queries/pokemon";
-import { useQuery } from "@apollo/client";
+import { GET_GENERATION_QUERY } from '@/gql/queries/pokemon';
+import { useQuery } from '@apollo/client';
 
 export const useGetGeneration = () => {
   const { data, loading, error } = useQuery(GET_GENERATION_QUERY);
@@ -11,4 +11,4 @@ export const useGetGeneration = () => {
     loading,
     error,
   };
-}
+};
