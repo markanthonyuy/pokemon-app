@@ -6,7 +6,6 @@ import { useGlobalSearchParams } from 'expo-router';
 import { Text, StyleSheet, ScrollView, FlatList, Image } from 'react-native';
 
 export default function PokemonScreen() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const params = useGlobalSearchParams<{ id: string }>();
   const { pokemon, loading } = useGetPokemon({ id: params.id });
 

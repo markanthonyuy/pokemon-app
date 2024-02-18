@@ -3,19 +3,19 @@ import { FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, View } from '@/components/Themed';
 import {
   PAGE_OFFSET,
-  useGetPokemonPerGeneration,
-} from '@/hooks/gql/useGetPokemonPerGeneration';
+  useGetPokemonByGeneration,
+} from '@/hooks/gql/useGetPokemonByGeneration';
 import { Container } from '@/components/common/Container';
 import { Loader } from '@/components/common/Loader';
 import { Link } from 'expo-router';
-import { useGeneration } from '@/providers/GenerationProvider';
+import { useGenerationContext } from '@/providers/GenerationProvider';
 export default function ListScreen() {
-  const { generation } = useGeneration()
+  const { generation } = useGenerationContext()
   const { pokemons, loading, loadMore, offset, totalCount, networkStatus } =
-    useGetPokemonPerGeneration({ name: generation });
+    useGetPokemonByGeneration({ name: generation });
 
   // Easier to read logic
-  const initialDataLoading = loading && networkStatus === 7;
+  const initialDataLoading = loading && networkStatus === 1;
   const loadMoreLoading = loading && networkStatus === 3;
   const showLoadMoreButton = pokemons.length + PAGE_OFFSET < totalCount;
 
@@ -65,6 +65,7 @@ export default function ListScreen() {
                 {!loadMoreLoading && (
                   <TouchableOpacity
                     onPress={() => {
+                      if (loading) return
                       loadMore(offset + PAGE_OFFSET);
                     }}
                     style={styles.footerButton}

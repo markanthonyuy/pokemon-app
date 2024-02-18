@@ -1,23 +1,23 @@
 import { TSGQLDocuments } from '@/__generated__/ts-gql/@schema';
 import { PokemonFragmentData } from '@/gql/fragments/pokemon';
-import { GET_GENERATION_QUERY } from '@/gql/queries/pokemon';
+import { GET_POKEMON_BY_GENERATION_QUERY } from '@/gql/queries/pokemon';
 import { useQuery } from '@apollo/client';
 import { useState } from 'react';
-type OrderBy = TSGQLDocuments['GetGeneration']['___type']['variables']['order'];
+type OrderBy = TSGQLDocuments['GetPokemonByGeneration']['___type']['variables']['order'];
 
-type UseGetPokemonPerGenerationProps = {
+type UseGetPokemonByGenerationProps = {
   name: string;
   order?: OrderBy;
 };
 
 export const PAGE_OFFSET = 15;
 
-export const useGetPokemonPerGeneration = ({
+export const useGetPokemonByGeneration = ({
   name,
   order = 'asc',
-}: UseGetPokemonPerGenerationProps) => {
-  const { data, error, loading, fetchMore, networkStatus } = useQuery(
-    GET_GENERATION_QUERY,
+}: UseGetPokemonByGenerationProps) => {
+  const { data, error, loading, fetchMore, networkStatus, refetch, client } = useQuery(
+    GET_POKEMON_BY_GENERATION_QUERY,
     {
       variables: {
         name,
@@ -82,8 +82,10 @@ export const useGetPokemonPerGeneration = ({
     error,
     loading,
     loadMore,
+    refetch,
     networkStatus,
     offset,
     totalCount,
+    client
   };
 };

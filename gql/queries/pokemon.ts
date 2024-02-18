@@ -1,7 +1,16 @@
 import { gql } from '@ts-gql/tag';
 
 export const GET_GENERATION_QUERY = gql`
-  query GetGeneration(
+  query GetGeneration {
+    pokemon_v2_generation {
+      ...generation_Fragment
+    }
+  }
+` as import("../../__generated__/ts-gql/GetGeneration").type;
+
+
+export const GET_POKEMON_BY_GENERATION_QUERY = gql`
+  query GetPokemonByGeneration(
     $name: String!
     $limit: Int!
     $offset: Int! = 0
@@ -24,7 +33,7 @@ export const GET_GENERATION_QUERY = gql`
       }
     }
   }
-` as import('../../__generated__/ts-gql/GetGeneration').type;
+` as import("../../__generated__/ts-gql/GetPokemonByGeneration").type;
 
 export const GET_POKEMON_QUERY = gql`
   query GetPokemon($id: Int) {

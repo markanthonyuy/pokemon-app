@@ -23,4 +23,4 @@ export const GenerationProvider = ({ children }: PropsWithChildren<{}>) => {
 }
 
 // Should I move to hooks/useGeneration.ts?
-export const useGeneration = () => useContext(Generation);
+export const useGenerationContext = () => useContext(Generation);

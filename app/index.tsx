@@ -5,14 +5,20 @@ import { Link } from 'expo-router';
 import { Container } from '@/components/common/Container';
 import { Separator } from '@/components/common/Separator';
 import RNPickerSelect from 'react-native-picker-select';
-import { useGeneration } from '@/providers/GenerationProvider';
-import { GENERATION_LIST } from '@/constants/GenerationList';
+import { useGenerationContext } from '@/providers/GenerationProvider';
+import { useGetGeneration } from '@/hooks/gql/useGetGeneration';
+import { useMemo } from 'react';
 
 export default function Index() {
-  const { generation, setGeneration } = useGeneration();
+  const { generations } = useGetGeneration()
+  const { generation, setGeneration } = useGenerationContext();
   const handleGotoWebsite = () => {
     Linking.openURL('https://markanthonyuy.com');
   };
+
+  const allGenerations = useMemo(() => {
+    return generations?.map((generation) => ({ label: `Generation ${generation.id}`, value: generation.name })) || []
+  }, [generations])
 
   return (
     <Container style={styles.container}>
@@ -33,7 +39,7 @@ export default function Index() {
             setGeneration(value)
           }}
           doneText="Select"
-          items={GENERATION_LIST}
+          items={allGenerations}
           style={{
             placeholder: {
               color: 'royalblue',
