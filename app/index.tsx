@@ -1,17 +1,18 @@
-import { Image, StyleSheet, TouchableOpacity, Linking } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, Linking, Alert } from 'react-native';
 
 import { Text, View } from '@/components/Themed';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import { Container } from '@/components/common/Container';
 import { Separator } from '@/components/common/Separator';
 import RNPickerSelect from 'react-native-picker-select';
 import { useGenerationContext } from '@/providers/GenerationProvider';
 import { useGetGeneration } from '@/hooks/gql/useGetGeneration';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 export default function Index() {
   const { generations } = useGetGeneration()
   const { generation, setGeneration } = useGenerationContext();
+  const router = useRouter();
   const handleGotoWebsite = () => {
     Linking.openURL('https://markanthonyuy.com');
   };
@@ -19,6 +20,21 @@ export default function Index() {
   const allGenerations = useMemo(() => {
     return generations?.map((generation) => ({ label: `Generation ${generation.id}`, value: generation.name })) || []
   }, [generations])
+
+  const handleCloseGenerationPicker = useCallback((donePress: boolean) => {
+    const messageTitle = 'Unable to Proceed'
+    const messagePart1 = 'Please select a generation. '
+    const messagePart2 = 'Press "Select" to continue.'
+    if (donePress) {
+      if (generation) {
+        router.push('/(tabs)/list')
+        return
+      }
+      Alert.alert(messageTitle, messagePart2)
+      return
+    }
+    Alert.alert(messageTitle, `${!generation ? messagePart1 : ''}${messagePart2}`)
+  }, [generation])
 
   return (
     <Container style={styles.container}>
@@ -38,6 +54,10 @@ export default function Index() {
           onValueChange={(value) => {
             setGeneration(value)
           }}
+          // Documentation says otherwise, I think creator forgot to add type for the prop. So adding ts-ignore for now
+          // From the documentation "Callback triggered right before the closing of the picker. It has one boolean parameter indicating if the done button was pressed or not"
+          // @ts-ignore
+          onClose={handleCloseGenerationPicker}
           doneText="Select"
           items={allGenerations}
           style={{
@@ -52,10 +72,6 @@ export default function Index() {
           }}
         />
       </View>
-
-      {generation && <Link href="/(tabs)/list">
-        <Text style={styles.linkText}>Enter app</Text>
-      </Link>}
 
       <Separator />
       <TouchableOpacity onPress={handleGotoWebsite}>

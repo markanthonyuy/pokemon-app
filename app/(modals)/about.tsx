@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { Text, View } from '@/components/Themed';
+import { Link } from 'expo-router';
 
 export default function ModalScreen() {
   return (
@@ -16,11 +17,11 @@ export default function ModalScreen() {
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
 
-      {/* <Link asChild href="/" replace>
+      <Link asChild href="/" replace>
         <TouchableOpacity>
           <Text style={styles.back}>Select Generation</Text>
         </TouchableOpacity>
-      </Link> */}
+      </Link>
     </View>
   );
 }
