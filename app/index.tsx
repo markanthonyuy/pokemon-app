@@ -17,7 +17,7 @@ import { useCallback, useMemo } from 'react';
 
 export default function Index() {
   const { generations } = useGetGeneration();
-  const { generation, setGeneration } = useGenerationContext();
+  const { generation, setGeneration, setGenerationId } = useGenerationContext();
   const router = useRouter();
   const handleGotoWebsite = () => {
     Linking.openURL('https://markanthonyuy.com');
@@ -28,6 +28,7 @@ export default function Index() {
       generations?.map((generation) => ({
         label: `Generation ${generation.id}`,
         value: generation.name,
+        id: generation.id,
       })) || []
     );
   }, [generations]);
@@ -53,6 +54,17 @@ export default function Index() {
     [generation]
   );
 
+  const handleGenerationChange = useCallback(
+    (value: string) => {
+      setGeneration(value);
+      const id = allGenerations.find(
+        (generation) => generation.value === value
+      )?.id;
+      setGenerationId(id);
+    },
+    [allGenerations]
+  );
+
   return (
     <Container style={styles.container}>
       <Text style={styles.title}>Welcome</Text>
@@ -68,9 +80,7 @@ export default function Index() {
           fixAndroidTouchableBug
           value={generation}
           placeholder={{ label: 'Select a generation', value: '' }}
-          onValueChange={(value) => {
-            setGeneration(value);
-          }}
+          onValueChange={handleGenerationChange}
           // Documentation says otherwise, I think creator forgot to add type for the prop. So adding ts-ignore for now
           // From the documentation "Callback triggered right before the closing of the picker. It has one boolean parameter indicating if the done button was pressed or not"
           // @ts-ignore
