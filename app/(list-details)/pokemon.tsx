@@ -56,7 +56,7 @@ export default function PokemonScreen() {
               Habitat: {pokemon?.pokemon_v2_pokemonhabitat?.name}
             </Text>
             <Text style={styles.informationText}>
-              Growth Rate Forumla: {pokemon?.pokemon_v2_growthrate?.formula}
+              Growth Rate Formula: {pokemon?.pokemon_v2_growthrate?.formula}
             </Text>
           </View>
         </ScrollView>
