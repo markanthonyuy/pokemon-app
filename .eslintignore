@@ -3,3 +3,4 @@ node_modules
 
 components/__tests__/
 __generated__/
+pnpm-lock.yaml
