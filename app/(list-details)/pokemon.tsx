@@ -59,6 +59,23 @@ export default function PokemonScreen() {
               Growth Rate Formula: {pokemon?.pokemon_v2_growthrate?.formula}
             </Text>
           </View>
+
+          <FlatList
+            data={pokemon?.pokemon_v2_pokemons[0].pokemon_v2_pokemonstats}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.statsContainer}
+            renderItem={(stats) => {
+              return (
+                <View style={styles.statBox}>
+                  <Text style={styles.statName}>
+                    {stats.item.pokemon_v2_stat?.name.toUpperCase()}
+                  </Text>
+                  <Text style={styles.stat}>{stats.item.base_stat}</Text>
+                </View>
+              );
+            }}
+          />
         </ScrollView>
       )}
     </Container>
@@ -86,5 +103,24 @@ const styles = StyleSheet.create({
   },
   informationText: {
     fontSize: 18,
+  },
+  statsContainer: {
+    gap: 10,
+    paddingHorizontal: 10,
+  },
+  statBox: {
+    padding: 10,
+    gap: 5,
+    backgroundColor: 'lightblue',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+  statName: {
+    fontSize: 15,
+  },
+  stat: {
+    fontSize: 22,
+    fontWeight: 'bold',
   },
 });
