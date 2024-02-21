@@ -23,6 +23,7 @@ GraphQL endpoint provided by [https://pokeapi.co/](https://pokeapi.co/)
 - Expo
 - React/React Native
 - Graphql
+- Apollo Client
 - Typescript
 - `ts-gql` for type safe gql documents
 
