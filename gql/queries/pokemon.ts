@@ -23,7 +23,7 @@ export const GET_POKEMON_BY_GENERATION_QUERY = gql`
         limit: $limit
         offset: $offset
       ) {
-        ...pokemon_species_Fragment
+        ...pokemon_species_with_sprites_Fragment
       }
       pokemon_v2_pokemonspecies_aggregate {
         aggregate {
@@ -38,14 +38,8 @@ export const GET_POKEMON_BY_GENERATION_QUERY = gql`
 export const GET_POKEMON_QUERY = gql`
   query GetPokemon($id: Int) {
     pokemon_v2_pokemonspecies(where: { id: { _eq: $id } }) {
-      name
-      forms_switchable
-      gender_rate
       id
-      is_baby
-      is_legendary
-      is_mythical
-      order
+      ...pokemon_species_Fragment
       pokemon_v2_pokemonshape {
         id
         name
@@ -69,6 +63,7 @@ export const GET_POKEMON_QUERY = gql`
         id
         height
         weight
+        base_experience
         pokemon_v2_pokemonsprites {
           id
           sprites(path: "other.showdown")

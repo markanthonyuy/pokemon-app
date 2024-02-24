@@ -22,7 +22,7 @@ export default function ListScreen() {
   return (
     <Container>
       {initialDataLoading && (
-        <Container style={styles.container}>
+        <Container style={styles.loadingContainer}>
           <Loader />
         </Container>
       )}
@@ -51,7 +51,7 @@ export default function ListScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { justifyContent: 'center' },
+  loadingContainer: { justifyContent: 'center' },
   rowContainer: {
     padding: 10,
     backgroundColor: '#fafafa',

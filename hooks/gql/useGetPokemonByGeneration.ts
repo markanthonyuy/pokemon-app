@@ -1,5 +1,5 @@
 import { TSGQLDocuments } from '@/__generated__/ts-gql/@schema';
-import { PokemonFragmentData } from '@/gql/fragments/pokemon';
+import { PokemonWithSpriteFragmentData } from '@/gql/fragments/pokemon';
 import { GET_POKEMON_BY_GENERATION_QUERY } from '@/gql/queries/pokemon';
 import { useQuery } from '@apollo/client';
 import { useState } from 'react';
@@ -36,7 +36,7 @@ export const useGetPokemonByGeneration = ({
 
   const [offset, setOffset] = useState(0);
   const [pokemons, setPokemons] =
-    useState<PokemonFragmentData>(initialQueryData);
+    useState<PokemonWithSpriteFragmentData>(initialQueryData);
 
   const allPokemons = pokemons.length ? [...pokemons] : [...initialQueryData];
 

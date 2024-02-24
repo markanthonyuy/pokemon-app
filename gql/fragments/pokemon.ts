@@ -25,6 +25,25 @@ const POKEMON_SPECIES_FRAGMENT = gql`
     id
     name
     order
+    is_baby
+    is_legendary
+    is_mythical
+    forms_switchable
+    capture_rate
+    base_happiness
+    forms_switchable
+    hatch_counter
+  }
+` as import('../../__generated__/ts-gql/pokemon_species_Fragment').type;
+
+export type PokemonFragmentData = ReadonlyArray<
+  FragmentData<typeof POKEMON_SPECIES_FRAGMENT>
+>;
+
+const POKEMON_SPECIES_WITH_SPRITES_FRAGMENT = gql`
+  fragment pokemon_species_with_sprites_Fragment on pokemon_v2_pokemonspecies {
+    id
+    ...pokemon_species_Fragment
     pokemon_v2_pokemons {
       id
       pokemon_v2_pokemonsprites {
@@ -32,8 +51,8 @@ const POKEMON_SPECIES_FRAGMENT = gql`
       }
     }
   }
-` as import('../../__generated__/ts-gql/pokemon_species_Fragment').type;
+` as import('../../__generated__/ts-gql/pokemon_species_with_sprites_Fragment').type;
 
-export type PokemonFragmentData = ReadonlyArray<
-  FragmentData<typeof POKEMON_SPECIES_FRAGMENT>
+export type PokemonWithSpriteFragmentData = ReadonlyArray<
+  FragmentData<typeof POKEMON_SPECIES_WITH_SPRITES_FRAGMENT>
 >;
