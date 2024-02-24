@@ -30,6 +30,7 @@ GraphQL endpoint provided by [https://pokeapi.co/](https://pokeapi.co/)
 ### Demo
 
 ![Demo](https://raw.githubusercontent.com/markanthonyuy/pokemon-app/main/assets/new-demo.gif)
+![Updated Demo](https://raw.githubusercontent.com/markanthonyuy/pokemon-app/main/assets/demo3.gif)
 
 ### Author
 
