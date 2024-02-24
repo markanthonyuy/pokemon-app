@@ -88,13 +88,18 @@ export default function Index() {
           doneText="Select"
           items={allGenerations}
           style={{
+            inputIOSContainer: {
+              borderRadius: 10,
+              backgroundColor: 'lightblue',
+              paddingVertical: 10,
+              padding: 20,
+            },
             placeholder: {
-              color: 'royalblue',
+              color: 'black',
             },
             inputIOS: {
-              fontSize: 30,
-              fontWeight: 'bold',
-              color: 'royalblue',
+              fontSize: 24,
+              color: 'black',
             },
           }}
         />
@@ -103,7 +108,7 @@ export default function Index() {
       <Separator />
       <TouchableOpacity onPress={handleGotoWebsite}>
         <Text>
-          Prouldy made by <Text style={styles.footerLink}>Mark Uy</Text>
+          Made with ❤️ by <Text style={styles.footerLink}>Mark Uy</Text>
         </Text>
       </TouchableOpacity>
     </Container>
