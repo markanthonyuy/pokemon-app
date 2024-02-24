@@ -56,10 +56,8 @@ const styles = StyleSheet.create({
   rowContainer: {
     padding: 10,
     backgroundColor: '#fafafa',
-    flexGrow: 1,
-    flexBasis: 0,
+    flexBasis: '33.33%',
     gap: 8,
-    alignItems: 'center',
   },
   image: { width: 90, height: 90 },
   name: {
