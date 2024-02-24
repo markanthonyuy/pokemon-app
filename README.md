@@ -20,7 +20,7 @@ GraphQL endpoint provided by [https://pokeapi.co/](https://pokeapi.co/)
 
 ### Stack
 
-- Expo
+- Expo / Expo App Router
 - React/React Native
 - Graphql
 - Apollo Client

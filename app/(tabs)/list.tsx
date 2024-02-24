@@ -1,14 +1,14 @@
-import { FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 
-import { Text, View } from '@/components/Themed';
 import {
   PAGE_OFFSET,
   useGetPokemonByGeneration,
 } from '@/hooks/gql/useGetPokemonByGeneration';
 import { Container } from '@/components/common/Container';
 import { Loader } from '@/components/common/Loader';
-import { Link } from 'expo-router';
 import { useGenerationContext } from '@/providers/GenerationProvider';
+import { PokemonListItem } from '@/components/common/pokemon/PokemonListItem';
+import { PokemonListFooter } from '@/components/common/pokemon/PokemonListFooter';
 export default function ListScreen() {
   const { generation } = useGenerationContext();
   const { pokemons, loading, loadMore, offset, totalCount, networkStatus } =
@@ -33,50 +33,17 @@ export default function ListScreen() {
           keyExtractor={(pokemon) => pokemon.id.toString()}
           renderItem={(pokemon) => {
             return (
-              <Link
-                push
-                href={{
-                  pathname: '/(list-details)/pokemon',
-                  params: { id: pokemon.item.id },
-                }}
-                asChild
-                style={styles.rowContainer}
-              >
-                <TouchableOpacity>
-                  <Image
-                    source={{
-                      uri: pokemon.item.pokemon_v2_pokemons[0]
-                        .pokemon_v2_pokemonsprites[0].sprites,
-                    }}
-                    style={styles.image}
-                  />
-                  <Text style={styles.name}>
-                    {pokemon.item.name.toUpperCase()}
-                  </Text>
-                </TouchableOpacity>
-              </Link>
+              <PokemonListItem pokemon={pokemon.item} key={pokemon.item.id} />
             );
           }}
-          ListFooterComponent={() => {
-            return (
-              showLoadMoreButton && (
-                <View style={styles.footer}>
-                  {loadMoreLoading && <Loader />}
-                  {!loadMoreLoading && (
-                    <TouchableOpacity
-                      onPress={() => {
-                        if (loading) return;
-                        loadMore(offset + PAGE_OFFSET);
-                      }}
-                      style={styles.footerButton}
-                    >
-                      <Text style={{ fontSize: 20 }}>Load More</Text>
-                    </TouchableOpacity>
-                  )}
-                </View>
-              )
-            );
-          }}
+          ListFooterComponent={
+            <PokemonListFooter
+              showLoadMoreButton={showLoadMoreButton}
+              loading={loadMoreLoading}
+              loadMore={loadMore}
+              offset={offset}
+            />
+          }
         />
       )}
     </Container>
