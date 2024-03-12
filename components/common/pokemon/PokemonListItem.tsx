@@ -27,18 +27,7 @@ export const PokemonListItem = ({ pokemon }: PokemonListItemProps) => {
           position: 'relative',
         }}
       >
-        <MonoText
-          style={{
-            position: 'absolute',
-            fontSize: 11,
-            top: 0,
-            right: 0,
-            padding: 3,
-            backgroundColor: 'papayawhip',
-          }}
-        >
-          {pokemon.order}
-        </MonoText>
+        <MonoText style={styles.orderText}>{pokemon.order}</MonoText>
         <Image
           source={{
             uri: pokemon.pokemon_v2_pokemons[0].pokemon_v2_pokemonsprites[0]
@@ -55,7 +44,6 @@ export const PokemonListItem = ({ pokemon }: PokemonListItemProps) => {
 const styles = StyleSheet.create({
   rowContainer: {
     padding: 10,
-    backgroundColor: '#fafafa',
     flexBasis: '33.33%',
     gap: 8,
   },
@@ -64,5 +52,12 @@ const styles = StyleSheet.create({
     width: '100%',
     fontSize: 16,
     textAlign: 'center',
+  },
+  orderText: {
+    position: 'absolute',
+    fontSize: 11,
+    top: 0,
+    right: 0,
+    padding: 3,
   },
 });

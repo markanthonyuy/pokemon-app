@@ -2,6 +2,8 @@ import { PAGE_OFFSET } from '@/hooks/gql/useGetPokemonByGeneration';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import { Loader } from '../Loader';
 import { Text, View } from '@/components/Themed';
+import Colors from '@/constants/Colors';
+import { useColorScheme } from '@/hooks/useColorScheme';
 
 type PokemonListFooterProps = {
   showLoadMoreButton: boolean;
@@ -16,9 +18,15 @@ export const PokemonListFooter = ({
   offset,
   loadMore,
 }: PokemonListFooterProps) => {
+  const colorScheme = useColorScheme();
   if (!showLoadMoreButton) return null;
   return (
-    <View style={styles.footer}>
+    <View
+      style={[
+        styles.footer,
+        { backgroundColor: Colors[colorScheme ?? 'light'].background },
+      ]}
+    >
       {loading && <Loader />}
       {!loading && (
         <TouchableOpacity
@@ -28,7 +36,14 @@ export const PokemonListFooter = ({
           }}
           style={styles.footerButton}
         >
-          <Text style={styles.loadMore}>Load More</Text>
+          <Text
+            style={[
+              styles.loadMore,
+              { backgroundColor: Colors[colorScheme ?? 'light'].background },
+            ]}
+          >
+            LOAD MORE
+          </Text>
         </TouchableOpacity>
       )}
     </View>
@@ -39,13 +54,11 @@ const styles = StyleSheet.create({
   footer: {
     padding: 10,
     alignItems: 'center',
-    backgroundColor: 'lightblue',
   },
   footerButton: {
     padding: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'lightblue',
   },
   loadMore: { fontSize: 20 },
 });
