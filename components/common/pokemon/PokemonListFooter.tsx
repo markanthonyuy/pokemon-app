@@ -27,7 +27,7 @@ export const PokemonListFooter = ({
         { backgroundColor: Colors[colorScheme ?? 'light'].background },
       ]}
     >
-      {loading && <Loader color={Colors[colorScheme ?? 'light'].tint} />}
+      {loading && <Loader />}
       {!loading && (
         <TouchableOpacity
           onPress={() => {
