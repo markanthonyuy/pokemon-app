@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   Linking,
   Alert,
+  Platform,
 } from 'react-native';
 
 import { Text, View } from '@/components/Themed';
@@ -37,7 +38,10 @@ export default function Index() {
     (donePress: boolean) => {
       const messageTitle = 'Unable to Proceed';
       const messagePart1 = 'Please select a generation. ';
-      const messagePart2 = 'Press "Select" to continue.';
+      const messagePart2 =
+        Platform.OS === 'ios'
+          ? 'Press "Select" to continue.'
+          : 'Please select a generation to continue.';
       if (donePress) {
         if (generation) {
           router.push('/(tabs)/list');
