@@ -76,7 +76,7 @@ export default function Index() {
 
       <View style={styles.generationSelection}>
         <RNPickerSelect
-          useNativeAndroidPickerStyle
+          useNativeAndroidPickerStyle={false}
           fixAndroidTouchableBug
           value={generation}
           placeholder={{ label: 'Select a generation', value: '' }}
@@ -84,10 +84,19 @@ export default function Index() {
           // Documentation says otherwise, I think creator forgot to add type for the prop. So adding ts-ignore for now
           // From the documentation "Callback triggered right before the closing of the picker. It has one boolean parameter indicating if the done button was pressed or not"
           // @ts-ignore
-          onClose={handleCloseGenerationPicker}
+          onClose={handleCloseGenerationPicker} // IOS only
           doneText="Select"
           items={allGenerations}
+          touchableWrapperProps={{
+            onBlur: () => handleCloseGenerationPicker(true), // Android only
+          }}
           style={{
+            inputAndroidContainer: {
+              borderRadius: 10,
+              backgroundColor: 'lightblue',
+              paddingVertical: 10,
+              padding: 20,
+            },
             inputIOSContainer: {
               borderRadius: 10,
               backgroundColor: 'lightblue',
@@ -98,6 +107,10 @@ export default function Index() {
               color: 'black',
             },
             inputIOS: {
+              fontSize: 24,
+              color: 'black',
+            },
+            inputAndroid: {
               fontSize: 24,
               color: 'black',
             },
