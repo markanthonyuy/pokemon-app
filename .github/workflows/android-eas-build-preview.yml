@@ -30,7 +30,7 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
       - name: Install dependencies
         run: pnpm install
-      - name: Building ${{ github.event.inputs.buildType }} file
+      - name: Building .apk file
         if: ${{ github.event.inputs.buildType == '.apk' }}
         run: |
           eas build \
@@ -38,7 +38,7 @@ jobs:
           --profile preview \
           --message "${{ github.event.inputs.buildType }}" \
           --non-interactive
-      - name: Building  ${{ github.event.inputs.buildType }} file
+      - name: Building .aab file
         if: ${{ github.event.inputs.buildType == '.aab' }}
         run: |
           eas build \
