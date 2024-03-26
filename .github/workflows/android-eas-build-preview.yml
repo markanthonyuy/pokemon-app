@@ -28,11 +28,11 @@ jobs:
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
+      - name: Get latest gql schema
+        run: pnpm download-schema
       - name: Install dependencies
         run: pnpm install
-      - name: Get latest gql schema
-        run: pnpm download:schema
-      - name: Build on EAS
+      - name: Building ${{ github.event.inputs.buildType }} file
         if: ${{ github.event.inputs.buildType == '.apk' }}
         run: |
           eas build \
@@ -40,7 +40,7 @@ jobs:
           --profile preview \
           --message "${{ github.event.inputs.buildType }}" \
           --non-interactive
-      - name: Build on EAS
+      - name: Building  ${{ github.event.inputs.buildType }} file
         if: ${{ github.event.inputs.buildType == '.aab' }}
         run: |
           eas build \
