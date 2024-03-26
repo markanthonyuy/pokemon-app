@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 export const useGetGeneration = () => {
   const { data, loading, error } = useQuery(GET_GENERATION_QUERY);
 
-  const generations = data?.pokemon_v2_generation || null;
+  const generations = data?.pokemon_v2_generation || [];
 
   return {
     generations,

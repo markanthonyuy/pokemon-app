@@ -1,7 +1,7 @@
 {
   "name": "pokemon",
   "main": "expo-router/entry",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -14,7 +14,8 @@
     "postinstall": "ts-gql build",
     "ts-gql:build": "ts-gql build",
     "ts-gql:watch": "ts-gql watch",
-    "prepare": "husky"
+    "prepare": "husky",
+    "build:android:apk:preview": "eas build --platform android --profile preview --message '.apk' --non-interactive"
   },
   "jest": {
     "preset": "jest-expo"
@@ -22,6 +23,7 @@
   "dependencies": {
     "@apollo/client": "^3.9.4",
     "@expo/vector-icons": "^14.0.0",
+    "@react-native-picker/picker": "^2.7.0",
     "@react-navigation/native": "^6.0.2",
     "@ts-gql/babel-plugin": "^0.1.1",
     "@ts-gql/compiler": "^0.16.5",
@@ -34,6 +36,7 @@
     "expo-splash-screen": "~0.26.4",
     "expo-status-bar": "~1.11.1",
     "expo-system-ui": "~2.9.3",
+    "expo-updates": "~0.24.12",
     "expo-web-browser": "~12.8.2",
     "get-graphql-schema": "^2.1.2",
     "graphql": "^16.8.1",
