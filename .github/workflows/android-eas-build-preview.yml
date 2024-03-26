@@ -1,0 +1,47 @@
+﻿name: Android EAS build (Preview)
+
+on:
+  workflow_dispatch:
+    inputs:
+      buildType:
+        type: choice
+        description: The build type
+        options:
+          - .apk
+          - .aab
+
+jobs:
+  build:
+    name: Install and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+          cache: pnpm
+      - name: Setup Expo and EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Install dependencies
+        run: pnpm install
+      - name: Get latest gql schema
+        run: pnpm download:schema
+      - name: Build on EAS
+        if: ${{ github.event.inputs.buildType == '.apk' }}
+        run: |
+          eas build \
+          --platform android \
+          --profile preview \
+          --message "${{ github.event.inputs.buildType }}" \
+          --non-interactive
+      - name: Build on EAS
+        if: ${{ github.event.inputs.buildType == '.aab' }}
+        run: |
+          eas build \
+          --platform android \
+          --profile preview-playstore \
+          --message "${{ github.event.inputs.buildType }}" \
+          --non-interactive

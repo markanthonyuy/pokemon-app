@@ -1,0 +1,43 @@
+{
+  "cli": {
+    "version": ">= 7.6.1",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "channel": "development",
+      "env": {
+        "EXPO_PUBLIC_GQL_ENDPOINT": "https://beta.pokeapi.co/graphql/v1beta"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "channel": "preview",
+      "env": {
+        "EXPO_PUBLIC_GQL_ENDPOINT": "https://beta.pokeapi.co/graphql/v1beta"
+      },
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "preview-playstore": {
+      "distribution": "internal",
+      "channel": "preview",
+      "env": {
+        "EXPO_PUBLIC_GQL_ENDPOINT": "https://beta.pokeapi.co/graphql/v1beta"
+      }
+    },
+    "production": {
+      "channel": "production",
+      "env": {
+        "EXPO_PUBLIC_GQL_ENDPOINT": "https://beta.pokeapi.co/graphql/v1beta"
+      },
+      "autoIncrement": true
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
