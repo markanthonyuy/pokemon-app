@@ -12,14 +12,17 @@ on:
 
 jobs:
   build:
-    name: Install and build
+    name: Create android preview build ${{ github.event.inputs.buildType }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8.7.4
       - uses: actions/setup-node@v4
         with:
           node-version: 18.x
-          cache: pnpm
+          cache: 'pnpm'
       - name: Setup Expo and EAS
         uses: expo/expo-github-action@v8
         with:
