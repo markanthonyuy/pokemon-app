@@ -15,11 +15,16 @@
     "preview": {
       "distribution": "internal",
       "channel": "preview",
-      "env": {
-        "EXPO_PUBLIC_GQL_ENDPOINT": "https://beta.pokeapi.co/graphql/v1beta"
-      },
       "android": {
-        "buildType": "apk"
+        "buildType": "apk",
+        "env": {
+          "EXPO_PUBLIC_GQL_ENDPOINT": "https://beta.pokeapi.co/graphql/v1beta"
+        }
+      },
+      "ios": {
+        "env": {
+          "EXPO_PUBLIC_GQL_ENDPOINT": "https://beta.pokeapi.co/graphql/v1beta"
+        }
       }
     },
     "preview-playstore": {
@@ -31,10 +36,18 @@
     },
     "production": {
       "channel": "production",
-      "env": {
-        "EXPO_PUBLIC_GQL_ENDPOINT": "https://beta.pokeapi.co/graphql/v1beta"
+      "autoIncrement": true,
+      "android": {
+        "buildType": "apk",
+        "env": {
+          "EXPO_PUBLIC_GQL_ENDPOINT": "https://beta.pokeapi.co/graphql/v1beta"
+        }
       },
-      "autoIncrement": true
+      "ios": {
+        "env": {
+          "EXPO_PUBLIC_GQL_ENDPOINT": "https://beta.pokeapi.co/graphql/v1beta"
+        }
+      }
     }
   },
   "submit": {
