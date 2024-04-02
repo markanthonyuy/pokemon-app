@@ -38,7 +38,6 @@ jobs:
           --profile preview \
           --message "${{ github.event.inputs.environment }}" \
           --non-interactive
-          - name: Build staging
       - name: Build production
         if: ${{ github.event.inputs.environment == 'production' }}
         run: |
