@@ -1,4 +1,7 @@
-﻿name: IOS EAS build
+﻿# I don't know why I bother creating this workflow
+# since I don't have apple developer's account T_T
+
+name: IOS EAS build
 
 on:
   workflow_dispatch:
