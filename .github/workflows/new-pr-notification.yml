@@ -17,4 +17,4 @@ jobs:
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           color: "#48f442"
           username: "GitHub Bot"
-          message: "🎉 A new pull request has been created !\n\n**${{ github.event.pull_request.title }}**\n\n${{ github.event.pull_request.body }}."
+          message: "🎉 A new pull request has been created"
