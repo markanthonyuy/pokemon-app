@@ -1,0 +1,20 @@
+name: Notify discord channel when PR is created
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify discord
+        uses: appleboy/discord-action@master
+        with:
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          color: "#48f442"
+          username: "GitHub Bot"
+          message: "🎉 A new pull request has been created !\n\n**${{ github.event.pull_request.title }}**\n\n${{ github.event.pull_request.body }}."
