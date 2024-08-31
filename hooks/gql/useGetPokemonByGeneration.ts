@@ -3,6 +3,8 @@ import { PokemonWithSpriteFragmentData } from '@/gql/fragments/pokemon';
 import { GET_POKEMON_BY_GENERATION_QUERY } from '@/gql/queries/pokemon';
 import { useQuery } from '@apollo/client';
 import { useState } from 'react';
+import { Platform } from 'react-native';
+
 type OrderBy =
   TSGQLDocuments['GetPokemonByGeneration']['___type']['variables']['order'];
 
@@ -11,7 +13,7 @@ type UseGetPokemonByGenerationProps = {
   order?: OrderBy;
 };
 
-export const PAGE_OFFSET = 15;
+export const PAGE_OFFSET = Platform.OS === 'web' ? 30 : 15;
 
 export const useGetPokemonByGeneration = ({
   name,

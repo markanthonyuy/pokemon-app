@@ -20,7 +20,7 @@ export default function ListScreen() {
   const showLoadMoreButton = pokemons.length + PAGE_OFFSET < totalCount;
 
   return (
-    <Container>
+    <>
       {initialDataLoading && (
         <Container style={styles.loadingContainer}>
           <Loader />
@@ -33,7 +33,9 @@ export default function ListScreen() {
           keyExtractor={(pokemon) => pokemon.id.toString()}
           renderItem={(pokemon) => {
             return (
-              <PokemonListItem pokemon={pokemon.item} key={pokemon.item.id} />
+              <Container>
+                <PokemonListItem pokemon={pokemon.item} key={pokemon.item.id} />
+              </Container>
             );
           }}
           ListFooterComponent={
@@ -46,7 +48,7 @@ export default function ListScreen() {
           }
         />
       )}
-    </Container>
+    </>
   );
 }
 

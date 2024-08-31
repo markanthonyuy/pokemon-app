@@ -6,7 +6,6 @@
   },
   "editor.wordWrapColumn": 80,
   "editor.rulers": [80],
-  "eslint.validate": ["typescript"],
   "jest.autoRun": {
     "onStartup": []
   }

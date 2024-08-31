@@ -20,13 +20,9 @@ export const PokemonListItem = ({ pokemon }: PokemonListItemProps) => {
         params: { id: pokemon.id },
       }}
       asChild
-      style={styles.rowContainer}
+      style={styles.linkContainer}
     >
-      <TouchableOpacity
-        style={{
-          position: 'relative',
-        }}
-      >
+      <TouchableOpacity style={styles.itemContainer}>
         <MonoText style={styles.orderText}>{pokemon.order}</MonoText>
         <Image
           source={{
@@ -42,12 +38,20 @@ export const PokemonListItem = ({ pokemon }: PokemonListItemProps) => {
 };
 
 const styles = StyleSheet.create({
-  rowContainer: {
+  linkContainer: {
     padding: 10,
     flexBasis: '33.33%',
     gap: 8,
   },
-  image: { width: 90, height: 90 },
+  itemContainer: {
+    alignItems: 'center',
+  },
+  image: {
+    width: 90,
+    height: 90,
+    backgroundColor: '#f3f3f3',
+    borderRadius: 10,
+  },
   name: {
     width: '100%',
     fontSize: 16,
@@ -57,7 +61,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     fontSize: 11,
     top: 0,
-    right: 0,
+    left: 0,
     padding: 3,
+    color: 'black',
   },
 });

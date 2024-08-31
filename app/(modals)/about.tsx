@@ -19,7 +19,7 @@ export default function ModalScreen() {
 
       <Link asChild href="/" replace>
         <TouchableOpacity>
-          <Text style={styles.back}>Select Generation</Text>
+          <Text style={styles.back}>Back to home</Text>
         </TouchableOpacity>
       </Link>
     </View>

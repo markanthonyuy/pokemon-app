@@ -27,7 +27,11 @@ export const PokemonListFooter = ({
         { backgroundColor: Colors[colorScheme ?? 'light'].background },
       ]}
     >
-      {loading && <Loader />}
+      {loading && (
+        <View style={styles.loaderContainer}>
+          <Loader />
+        </View>
+      )}
       {!loading && (
         <TouchableOpacity
           onPress={() => {
@@ -36,14 +40,7 @@ export const PokemonListFooter = ({
           }}
           style={styles.footerButton}
         >
-          <Text
-            style={[
-              styles.loadMore,
-              { backgroundColor: Colors[colorScheme ?? 'light'].background },
-            ]}
-          >
-            LOAD MORE
-          </Text>
+          <Text style={[styles.loadMore]}>LOAD MORE</Text>
         </TouchableOpacity>
       )}
     </View>
@@ -52,13 +49,17 @@ export const PokemonListFooter = ({
 
 const styles = StyleSheet.create({
   footer: {
-    padding: 10,
     alignItems: 'center',
   },
   footerButton: {
-    padding: 0,
+    width: '100%',
+    paddingVertical: 20,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#f3f3f3',
   },
-  loadMore: { fontSize: 20 },
+  loaderContainer: {
+    padding: 20,
+  },
+  loadMore: { fontSize: 14 },
 });

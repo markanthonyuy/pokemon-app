@@ -47,6 +47,10 @@ export default function Index() {
           router.push('/(tabs)/list');
           return;
         }
+        if (Platform.OS === 'web') {
+          alert(messagePart2);
+          return;
+        }
         Alert.alert(messageTitle, messagePart2);
         return;
       }
@@ -95,18 +99,8 @@ export default function Index() {
             onBlur: () => handleCloseGenerationPicker(true), // Android only
           }}
           style={{
-            inputAndroidContainer: {
-              borderRadius: 10,
-              backgroundColor: 'lightblue',
-              paddingVertical: 10,
-              padding: 20,
-            },
-            inputIOSContainer: {
-              borderRadius: 10,
-              backgroundColor: 'lightblue',
-              paddingVertical: 10,
-              padding: 20,
-            },
+            inputAndroidContainer: styles.buttonSelectGeneration,
+            inputIOSContainer: styles.buttonSelectGeneration,
             placeholder: {
               color: 'black',
             },
@@ -120,6 +114,16 @@ export default function Index() {
             },
           }}
         />
+        {Platform.OS === 'web' && (
+          <TouchableOpacity
+            onPress={() => {
+              handleCloseGenerationPicker(true);
+            }}
+            style={styles.buttonSelectGeneration}
+          >
+            <Text>Select Generation</Text>
+          </TouchableOpacity>
+        )}
       </View>
 
       <Separator />
@@ -148,6 +152,7 @@ const styles = StyleSheet.create({
   },
   generationSelection: {
     justifyContent: 'center',
+    gap: 20,
   },
   footerLink: {
     color: '#2e78b7',
@@ -156,5 +161,11 @@ const styles = StyleSheet.create({
   linkText: {
     fontSize: 24,
     color: '#2e78b7',
+  },
+  buttonSelectGeneration: {
+    borderRadius: 10,
+    backgroundColor: 'lightblue',
+    paddingVertical: 10,
+    padding: 20,
   },
 });

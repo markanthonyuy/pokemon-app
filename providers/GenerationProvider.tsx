@@ -1,4 +1,11 @@
-import { PropsWithChildren, createContext, useContext, useState } from 'react';
+import { useRouter } from 'expo-router';
+import {
+  PropsWithChildren,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 type GenerationContext = {
   generation: string;
@@ -17,6 +24,15 @@ export const Generation = createContext<GenerationContext>({
 export const GenerationProvider = ({ children }: PropsWithChildren<{}>) => {
   const [generation, setGeneration] = useState('');
   const [generationId, setGenerationId] = useState<number | undefined>();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!generationId) {
+      router.push('/');
+      return;
+    }
+  }, []);
+
   return (
     <Generation.Provider
       value={{
