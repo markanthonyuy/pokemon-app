@@ -87,7 +87,7 @@ export default function Index() {
           useNativeAndroidPickerStyle={false}
           fixAndroidTouchableBug
           value={generation}
-          placeholder={{ label: 'Select a generation', value: '' }}
+          placeholder={{ label: 'Select Generation', value: '' }}
           onValueChange={handleGenerationChange}
           // Documentation says otherwise, I think creator forgot to add type for the prop. So adding ts-ignore for now
           // From the documentation "Callback triggered right before the closing of the picker. It has one boolean parameter indicating if the done button was pressed or not"

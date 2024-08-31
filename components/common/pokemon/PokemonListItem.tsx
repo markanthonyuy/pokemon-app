@@ -31,7 +31,9 @@ export const PokemonListItem = ({ pokemon }: PokemonListItemProps) => {
           }}
           style={styles.image}
         />
-        <Text style={styles.name}>{pokemon.name.toUpperCase()}</Text>
+        <Text style={styles.name} numberOfLines={1} ellipsizeMode="tail">
+          {pokemon.name.toUpperCase()}
+        </Text>
       </TouchableOpacity>
     </Link>
   );
@@ -40,8 +42,8 @@ export const PokemonListItem = ({ pokemon }: PokemonListItemProps) => {
 const styles = StyleSheet.create({
   linkContainer: {
     padding: 10,
-    flexBasis: '33.33%',
     gap: 8,
+    width: 120,
   },
   itemContainer: {
     alignItems: 'center',
@@ -54,7 +56,7 @@ const styles = StyleSheet.create({
   },
   name: {
     width: '100%',
-    fontSize: 16,
+    fontSize: 14,
     textAlign: 'center',
   },
   orderText: {
@@ -64,5 +66,6 @@ const styles = StyleSheet.create({
     left: 0,
     padding: 3,
     color: 'black',
+    zIndex: 1,
   },
 });

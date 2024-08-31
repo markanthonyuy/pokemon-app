@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, Platform, StyleSheet, View } from 'react-native';
 
 import {
   PAGE_OFFSET,
@@ -27,26 +27,52 @@ export default function ListScreen() {
         </Container>
       )}
       {!initialDataLoading && (
-        <FlatList
-          data={pokemons}
-          numColumns={3}
-          keyExtractor={(pokemon) => pokemon.id.toString()}
-          renderItem={(pokemon) => {
-            return (
-              <Container>
-                <PokemonListItem pokemon={pokemon.item} key={pokemon.item.id} />
-              </Container>
-            );
-          }}
-          ListFooterComponent={
+        <>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              flexGrow: 1,
+            }}
+          >
+            <FlatList
+              data={pokemons}
+              numColumns={Platform.OS === 'web' ? undefined : 3}
+              keyExtractor={(pokemon) => pokemon.id.toString()}
+              contentContainerStyle={
+                Platform.OS === 'web' ? styles.flatListContainer : {}
+              }
+              renderItem={(pokemon) => {
+                return (
+                  <Container>
+                    <PokemonListItem
+                      pokemon={pokemon.item}
+                      key={pokemon.item.id}
+                    />
+                  </Container>
+                );
+              }}
+              ListFooterComponent={
+                Platform.OS === 'web' ? undefined : (
+                  <PokemonListFooter
+                    showLoadMoreButton={showLoadMoreButton}
+                    loading={loadMoreLoading}
+                    loadMore={loadMore}
+                    offset={offset}
+                  />
+                )
+              }
+            />
+          </View>
+          {Platform.OS === 'web' && (
             <PokemonListFooter
               showLoadMoreButton={showLoadMoreButton}
               loading={loadMoreLoading}
               loadMore={loadMore}
               offset={offset}
             />
-          }
-        />
+          )}
+        </>
       )}
     </>
   );
@@ -54,13 +80,11 @@ export default function ListScreen() {
 
 const styles = StyleSheet.create({
   loadingContainer: { justifyContent: 'center', flex: 1 },
-  rowContainer: {
+  flatListContainer: {
     padding: 10,
-    backgroundColor: '#fafafa',
-    flexGrow: 1,
-    flexBasis: 0,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
     gap: 8,
-    alignItems: 'center',
   },
   image: { width: 90, height: 90 },
   name: {
